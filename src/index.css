@@ -1,7 +1,18 @@
-:root {
-  --yellow-primary: #f5c518;
-  --slate-primary: #1a1a1a;
-  --slate-secondary: rgba(255, 255, 255, 0.08);
-  --text-gray: rgba(255, 255, 255, 0.7);
-  --text-blue: #5799ef;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@import "./variables.css";
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  color: white;
 }
+
+#root{
+  width: 100vw;
+  min-height: 100vh;
+  background-color: black;
+}
+

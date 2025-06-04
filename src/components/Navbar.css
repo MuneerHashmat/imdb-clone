@@ -1,0 +1,174 @@
+@import "../variables.css";
+
+nav {
+  width: 100%;
+  padding: 10px 100px;
+  background-color: var(--dark-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 5px;
+}
+
+.link {
+  text-decoration: none;
+  padding: 10px;
+}
+
+button:hover, .link:hover{
+    background-color: var(--slate-secondary);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.use-app {
+  color: black;
+  display: none;
+  background-color: var(--yellow-primary);
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px;
+}
+
+p,
+span {
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-tablet {
+  display: none;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar input {
+  outline: none;
+  border: none;
+  color: black;
+  font-size: 15px;
+}
+
+.search-bar button{
+    padding: 0;
+}
+
+.imdb-pro {
+  font-weight: bold;
+}
+
+.imdb-pro span {
+  color: var(--text-blue);
+}
+
+.vertical-line {
+  align-self: stretch;
+  border-left: 3px solid var(--slate-secondary);
+}
+
+.watchlist {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.language {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.mobile-nav{
+    display: none;
+}
+
+
+@media (max-width: 1300px) {
+  nav {
+    padding: 10px;
+  }
+
+  .search-bar {
+    width: 45%;
+  }
+}
+
+@media (max-width: 800px) {
+  nav {
+    padding: 10px 20px;
+  }
+  .menu,
+  .imdb-pro,
+  .watchlist,
+  .language {
+    display: none;
+  }
+  .menu-tablet {
+    display: flex;
+  }
+
+  .use-app {
+    display: flex;
+  }
+
+  .use-app:hover{
+    background-color: var(--yellow-primary);
+  }
+}
+
+@media (max-width: 600px){
+    nav > *:not(.mobile-nav){
+        display: none;
+    }
+
+    .mobile-nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .mobile-nav-items{
+        display: flex;
+        gap: 17px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 375px){
+    nav{
+        padding: 10px 5px;
+    }
+    .mobile-nav-items{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .link{
+        padding: 5px;
+    }
+}
