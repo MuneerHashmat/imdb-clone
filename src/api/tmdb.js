@@ -14,5 +14,3 @@ export const fetchDataFromTMDB = async (endpoint) => {
     console.log(error);
   }
 };
-
-
