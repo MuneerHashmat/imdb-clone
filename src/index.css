@@ -16,3 +16,17 @@
   background-color: black;
 }
 
+.shimmer {
+	animation: shimmer 2s infinite linear;
+	background: linear-gradient(to right, #1a1a1a 4%, rgba(255, 255, 255, 0.08) 25%, #1a1a1a 36%);
+	background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -1000px 0;
+	}
+	100% {
+		background-position: 1000px 0;
+	}
+}

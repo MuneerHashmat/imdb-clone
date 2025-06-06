@@ -1,0 +1,20 @@
+.hero-skeliton, .hero-container{
+    width: 95vw;
+    height: 70vh;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+
+
+@media (max-width: 1024px){
+    .hero-skeliton, .hero-container{
+        height: 50vw;
+    }
+}
+
+@media (max-width: 768px){
+    .hero-skeliton, .hero-container{
+        height: 60vw;
+    }
+}
