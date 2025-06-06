@@ -32,12 +32,14 @@ const Navbar = () => {
 
       <div className="vertical-line"></div>
 
-      <Link  to={"/"} className="watchlist link">
+      <Link to={"/"} className="watchlist link">
         <BookmarkPlus size={16} />
         Watchlist
       </Link>
 
-      <Link to={"/"} className="link">Sign In</Link>
+      <Link to={"/"} className="link">
+        Sign In
+      </Link>
 
       <button className="language">
         <span>EN</span>
@@ -60,7 +62,9 @@ const Navbar = () => {
           <button>
             <Search size={20} />
           </button>
-          <Link to={"/"} className="link">Sign In</Link>
+          <Link to={"/"} className="link">
+            Sign In
+          </Link>
           <button className="use-app">Use app</button>
         </div>
       </div>
