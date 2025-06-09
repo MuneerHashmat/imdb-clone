@@ -17,4 +17,8 @@
     .hero-skeliton, .hero-container{
         height: 60vw;
     }
+
+    .react-multiple-carousel__arrow{
+        display: none;
+    }
 }
