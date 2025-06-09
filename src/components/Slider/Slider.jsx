@@ -4,33 +4,22 @@ import { fetchDataFromTMDB } from "../../api/tmdb";
 import SliderCard from "../SliderCard/SliderCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Slider = ({ type }) => {
+const Slider = ({ type, endpoint }) => {
   const [sliderItems, setSliderItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const slideRef=useRef(null);
+  const slideRef = useRef(null);
 
   const fetchData = async () => {
     setLoading(true);
-    let items;
     try {
-      switch (type) {
-        case "people": {
-          const data = await fetchDataFromTMDB(
-            "/person/popular?language=en-US&page=1"
-          );
-          items = data.results;
-          console.log(items);
-          break;
-        }
-      }
-      setSliderItems(items);
-      setLoading(false)
+      const data = await fetchDataFromTMDB(endpoint);
+      setSliderItems(data.results || []);
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
-
 
   const scrollLeft = () => {
     if (slideRef.current) {
@@ -49,34 +38,32 @@ const Slider = ({ type }) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
-  if(loading) return (
-    <div style={{height: type==="people" ? "230px" : "350px"}} className="slider shimmer"></div>
-  )
+  }, [endpoint]);
+
+  if (loading)
+    return (
+      <div
+        style={{ height: type === "people" ? "230px" : "350px" }}
+        className="slider shimmer"
+      ></div>
+    );
 
   return (
-    <div  
-    className="slider">
-     <div 
-     ref={slideRef}
-     className="slider-cards">
-       {sliderItems.map((item)=>(
-        <SliderCard key={item.id} type={type} item={item}/>
-      ))}
-     </div>
+    <div className="slider">
+      <div ref={slideRef} className="slider-cards">
+        {sliderItems.map((item) => (
+          <SliderCard key={item.id} type={type} item={item} />
+        ))}
+      </div>
 
-      <button 
-      onClick={scrollLeft}
-      className="slide-btn slide-left">
+      <button onClick={scrollLeft} className="slide-btn slide-left">
         <ChevronLeft size={24} />
       </button>
-      <button 
-      onClick={scrollRight}
-      className="slide-btn slide-right">
+      <button onClick={scrollRight} className="slide-btn slide-right">
         <ChevronRight size={24} />
       </button>
     </div>
-  )
+  );
 };
 
 export default Slider;

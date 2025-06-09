@@ -1,28 +1,64 @@
-.slider-card-people{
+.slider-card-people {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.slider-card-people img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+.slider-card-people img:hover {
+  filter: brightness(60%);
+}
+
+.slider-card-people div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.slider-card-people span {
+  color: var(--text-blue);
+}
+
+.slider-card {
+  background-color: var(--slate-primary);
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.slider-card-content{
+    width: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
-
-.slider-card-people img{
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
+.slider-card-content>img {
+  width: 200px;
+  height: 250px;
+  border-radius: 10px;
 }
 
-.slider-card-people img:hover{
-    filter: brightness(60%);
-}
-
-.slider-card-people div{
+.slider-card-details{
+    padding: 0 10px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+}
+
+.rating{
+    display: flex;
+    gap: 5px;
     align-items: center;
 }
 
-.slider-card-people span{
-    color: var(--text-blue);
-}

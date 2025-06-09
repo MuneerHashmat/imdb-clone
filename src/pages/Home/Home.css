@@ -7,6 +7,9 @@
     margin: 0 auto;
 }
 
+.slider-container{
+    margin-bottom: 40px;
+}
 .slider-title{
     display: flex;
     gap: 10px;
