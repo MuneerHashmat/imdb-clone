@@ -24,3 +24,9 @@
         display: none;
     }
 }
+
+@media (max-width: 600px){
+    .hero-skeliton, .hero-container{
+        height: 40vh;
+    }
+}

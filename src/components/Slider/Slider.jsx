@@ -38,6 +38,7 @@ const Slider = ({ type, endpoint }) => {
 
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint]);
 
   if (loading)
