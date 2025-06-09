@@ -1,7 +1,7 @@
 import React from "react";
 import "./SliderCard.css";
 import { SMALL_IMG_BASE_URL } from "../../utils/constants";
-import { Star } from "lucide-react";
+import { BookmarkPlus, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const SliderCard = ({ type, item }) => {
@@ -23,6 +23,9 @@ const SliderCard = ({ type, item }) => {
     <Link to={"/"} className="slider-card">
       <div className="slider-card-content">
       <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" />
+      <div className="bookmark">
+        <BookmarkPlus />
+      </div>
 
       <div className="slider-card-details">
         <div className="rating">

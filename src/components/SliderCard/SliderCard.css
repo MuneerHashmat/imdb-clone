@@ -42,6 +42,14 @@
     gap: 20px;
 }
 
+.bookmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+}
+
 .slider-card-content>img {
   width: 200px;
   height: 250px;
