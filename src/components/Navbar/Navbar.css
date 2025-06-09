@@ -11,7 +11,7 @@ nav {
   font-weight: bold;
 }
 
-button {
+nav button {
   background: transparent;
   border: none;
   padding: 5px;
@@ -22,7 +22,7 @@ button {
   padding: 10px;
 }
 
-button:hover, .link:hover{
+nav button:hover, .link:hover{
     background-color: var(--slate-secondary);
     border-radius: 50px;
     cursor: pointer;

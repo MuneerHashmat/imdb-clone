@@ -1,0 +1,45 @@
+.slider{
+    width: 100%;
+    position:relative;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.slider-cards{
+    overflow-x: scroll;
+    scrollbar-width: none;
+     display: flex;
+    gap: 40px;
+}
+
+.slide-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;  
+  height: 3rem; 
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+}
+
+.slide-left{
+    left: 1rem;
+}
+
+.slide-right{
+    right: 1rem;
+}
+
+@media (max-width: 768px){
+    .slide-btn{
+        display: none;
+    }
+}
+

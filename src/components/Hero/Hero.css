@@ -1,5 +1,5 @@
 .hero-skeliton, .hero-container{
-    width: 95vw;
+    width: 90vw;
     height: 70vh;
     border-radius: 10px;
     margin: 0 auto;
@@ -7,8 +7,10 @@
 
 
 
+
 @media (max-width: 1024px){
     .hero-skeliton, .hero-container{
+        width: 95vw;
         height: 50vw;
     }
 }

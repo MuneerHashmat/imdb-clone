@@ -17,7 +17,6 @@ const Hero = () => {
         const data = await fetchDataFromTMDB(
           "/trending/all/day?language=en-US"
         );
-        console.log(data.results);
         setTrendingItems(data.results);
         setLoading(false)
       } catch (error) {

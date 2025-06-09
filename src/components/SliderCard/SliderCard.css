@@ -1,0 +1,28 @@
+.slider-card-people{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.slider-card-people img{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.slider-card-people img:hover{
+    filter: brightness(60%);
+}
+
+.slider-card-people div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.slider-card-people span{
+    color: var(--text-blue);
+}
