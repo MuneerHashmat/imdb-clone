@@ -19,6 +19,7 @@ const Navbar = () => {
       return;
     }
     navigate(`/search?query=${encodeURIComponent(searchText)}`);
+    setUserInput("");
   }
 
   return (
