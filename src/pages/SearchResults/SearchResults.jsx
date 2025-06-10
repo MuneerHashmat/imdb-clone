@@ -13,6 +13,9 @@ const SearchResults = () => {
     setSearchQuery(query || "");
   }, [location.search]);
 
+  useEffect(() => {
+    console.log(searchQuery);
+  }, [searchQuery]);
   return <div className="search-results-container">SearchResults</div>;
 };
 
