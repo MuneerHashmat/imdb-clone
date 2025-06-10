@@ -2,9 +2,25 @@ import { BookmarkPlus, ChevronDown, Menu, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [userInput, setUserInput] = useState("");
+  const navigate=useNavigate();
+
+
+  const handleOnSubmit=(e)=>{
+    e.preventDefault();
+    const searchText=userInput.trim().toLowerCase();
+    if(searchText.length===0){
+      toast.error("Search query can't be empty");
+      return;
+    }
+    navigate(`/search?query=${encodeURIComponent(searchText)}`);
+  }
+
   return (
     <nav>
       <button className="menu-tablet nav-item hover">
@@ -19,8 +35,15 @@ const Navbar = () => {
         <p>Menu</p>
       </button>
 
-      <form className="search-bar">
-        <input type="text" placeholder="Search IMDb" />
+      <form 
+      onSubmit={handleOnSubmit}
+      className="search-bar">
+        <input
+          type="text"
+          placeholder="Search IMDb"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
         <button>
           <Search color="gray" />
         </button>
@@ -70,15 +93,22 @@ const Navbar = () => {
           <button className="use-app">Use app</button>
         </div>
         <div className={`search-bar-mobile ${showMobileSearch && "visible"}`}>
-          <form>
-            <input type="text" placeholder="Search IMDb" />
+          <form
+          onSubmit={handleOnSubmit}
+          >
+            <input
+              type="text"
+              placeholder="Search IMDb"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+            />
             <button>
               <Search />
             </button>
           </form>
-          <button
-          onClick={()=>setShowMobileSearch(false)}
-          ><X /></button>
+          <button onClick={() => setShowMobileSearch(false)}>
+            <X />
+          </button>
         </div>
       </div>
     </nav>
