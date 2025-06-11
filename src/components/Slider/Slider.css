@@ -9,7 +9,7 @@
   overflow-x: scroll;
   scrollbar-width: none;
   display: flex;
-  gap: 40px;
+  gap: 35px;
 }
 
 .slide-btn {

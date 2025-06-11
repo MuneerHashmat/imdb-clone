@@ -1,5 +1,6 @@
 .result-card{
   width: 250px;
+  height: 425px;
   border-radius: 10px;
   background-color: var(--slate-primary);
   text-decoration: none;

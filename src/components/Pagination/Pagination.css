@@ -1,0 +1,21 @@
+.pages-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.page-button, .page{
+    padding: 4px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--slate-primary);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.page{
+    /* bg-[#FAFAFA] dark:bg-[#1E2329] py-1 px-4 rounded-md shadow-sm border border-gray-300 dark:border-gray-600 */
+    padding: 4px 12px;
+    background-color: var(--slate-primary);
+}

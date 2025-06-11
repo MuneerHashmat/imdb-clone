@@ -18,7 +18,7 @@ const SearchResultCard = ({item}) => {
   return (
     <Link to={"/"} className="result-card">
             <div className="result-card-content">
-                <img src={item.poster_path ? `${SMALL_IMG_BASE_URL}${item.poster_path}` :"/profile.png"} alt="profile" />
+                <img src={item.poster_path ? `${SMALL_IMG_BASE_URL}${item.poster_path}` :"/poster.png"} alt="poster" />
 
                 <div className="result-card-details">
                     <p>Type: <span>{item.media_type=="movie" ? "Movie" : "TV show"}</span></p>

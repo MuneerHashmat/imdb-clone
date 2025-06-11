@@ -14,12 +14,13 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  overflow-x: hidden;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .skeliton-item {
   width: 250px;
-  height: 400px;
+  height: 425px;
   border-radius: 10px;
   overflow: hidden;
 }

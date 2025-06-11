@@ -13,7 +13,7 @@ const Navbar = () => {
 
   const handleOnSubmit=(e)=>{
     e.preventDefault();
-    const searchText=userInput.trim().toLowerCase();
+    const searchText=userInput.trim();
     if(searchText.length===0){
       toast.error("Search query can't be empty");
       return;

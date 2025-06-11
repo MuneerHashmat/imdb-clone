@@ -70,3 +70,19 @@
     align-items: center;
 }
 
+
+@media (max-width: 600px){
+  .slider-card-people{
+    gap: 10px;
+  }
+ .slider-card-people img{
+  width: 150px;
+  height: 150px;
+ }
+
+ .slider-card-people p,  .slider-card-people span{
+   font-size: small;
+   font-weight: lighter;
+ }
+}
+
