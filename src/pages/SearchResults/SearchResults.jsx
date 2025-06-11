@@ -21,7 +21,6 @@ const SearchResults = () => {
       const data = await fetchDataFromTMDB(
         `/search/multi?query=${query}&include_adult=false&language=en-US&page=${currPage}`
       );
-      console.log(data);
       setSearchResults(data);
       if (totalPagesRef.current === null && data.total_pages) {
         totalPagesRef.current = data.total_pages;
@@ -103,7 +102,6 @@ const SearchResults = () => {
 
       {totalPagesRef.current && searchResults?.total_pages > 1 && (
         <Pagination
-          loading={loading}
           totalPages={totalPagesRef.current}
           currentPage={currPage}
           setCurrentPage={setCurrPage}
