@@ -20,7 +20,7 @@ const SliderCard = ({ type, item }) => {
     );
 
   return (
-    <Link to={"/"} className="slider-card">
+    <Link to={`/detail/${type}/${item.id}`} className="slider-card">
       <div className="slider-card-content">
       <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" />
       <div className="bookmark">

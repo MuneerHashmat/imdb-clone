@@ -11,22 +11,22 @@ export const ORIGINAL_IMG_BASE_URL = "https://image.tmdb.org/t/p/original";
 export const SLIDERS=[
   {
     title: "Popular Movies",
-    type: "popular-movies",
+    type: "movie",
     endpoint:"/movie/popular?language=en-US&page=1"
   },
   {
     title: "Top Rated Movies",
-    type: "top-rated-movies",
+    type: "movie",
     endpoint:"/movie/top_rated?language=en-US&page=1"
   },
   {
     title: "Popular TV Shows",
-    type: "popular-tv",
+    type: "tv",
     endpoint:"/tv/popular?language=en-US&page=1"
   },
   {
     title: "Top Rated TV shows",
-    type: "top-rated-tv",
+    type: "tv",
     endpoint:"/tv/top_rated?language=en-US&page=1"
   }
 

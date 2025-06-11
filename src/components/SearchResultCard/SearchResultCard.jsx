@@ -16,7 +16,7 @@ const SearchResultCard = ({item}) => {
         </div>
     )
   return (
-    <Link to={"/"} className="result-card">
+    <Link to={`/detail/${item.media_type}/${item.id}`} className="result-card">
             <div className="result-card-content">
                 <img src={item.poster_path ? `${SMALL_IMG_BASE_URL}${item.poster_path}` :"/poster.png"} alt="poster" />
 

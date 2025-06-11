@@ -24,7 +24,7 @@ const Home = () => {
         </h1>
 
         {SLIDERS.map((item) => (
-          <div key={item.type} className="slider-container">
+          <div key={item.title} className="slider-container">
             <div className="slider-title">
               <div></div>
               <h2>{item.title}</h2>
