@@ -35,7 +35,7 @@
 
 .content-detail-main .details {
   margin: 0 auto;
-  padding: 50px 0 0 0;
+  padding: 50px 0 30px 0;
   width: 80vw;
   position: relative;
   z-index: 10;
@@ -93,6 +93,11 @@
   font-size: 20px;
 }
 
+.other-details{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 .other-details-item{
   font-size: larger;
   display: flex;
@@ -138,6 +143,7 @@
 @media (max-width: 1024px) {
   .content-detail-main .details {
     width: 90vw;
+    padding-bottom: 50px;
   }
 }
 

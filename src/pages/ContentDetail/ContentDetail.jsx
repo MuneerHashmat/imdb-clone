@@ -13,7 +13,7 @@ const ContentDetail = () => {
   const { type, id } = useParams();
   const [details, setDetails] = useState(null);
   const [similarContent, setSimilarContent] = useState([]);
-  const [credits, setCredits]=useState(null)
+  const [credits, setCredits] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
@@ -22,7 +22,7 @@ const ContentDetail = () => {
       const [detailsData, similarContentData, creditsData] = await Promise.all([
         fetchDataFromTMDB(`/${type}/${id}?language=en-US`),
         fetchDataFromTMDB(`/${type}/${id}/similar?language=en-US&page=1`),
-        fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`)
+        fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
       ]);
       setDetails(detailsData);
       setSimilarContent(similarContentData.results);
@@ -56,6 +56,12 @@ const ContentDetail = () => {
         <h2 style={{ textAlign: "center" }}>Details not Found {": ("}</h2>
       </div>
     );
+
+  const director = credits?.crew?.filter((item) => item.job == "Director");
+  const writer = credits?.crew?.filter(
+    (item) =>
+      item.job === "Screenplay" || item.job === "Story" || item.job === "Writer"
+  );
 
   return (
     <div className="content-detail-container">
@@ -105,44 +111,103 @@ const ContentDetail = () => {
                 <span>|</span>
                 {details.vote_average && (
                   <p
-                  style={{
-                    color:"#f5c518"
-                  }}><img src="/star.png" alt="star" width={15}/>{details.vote_average.toFixed(1)}</p>
+                    style={{
+                      color: "#f5c518",
+                    }}
+                  >
+                    <img src="/star.png" alt="star" width={15} />
+                    {details.vote_average.toFixed(1)}
+                  </p>
                 )}
               </div>
 
               <div className="genres">
-                {details.genres && details.genres.map((item)=>(
-                  <div key={item.id}>{item.name}</div>
-                ))}
+                {details.genres &&
+                  details.genres.map((item) => (
+                    <div key={item.id}>{item.name}</div>
+                  ))}
               </div>
             </div>
             <p className="overview">{details.overview || "No Overview"}</p>
-           <div className="other-details">
-             {details.status && (
-              <div className="other-details-item">
-                <div>
-                <p>Status: <span>{details.status}</span></p>
-                {details.runtime && (
-                  <>
-                    <p>|</p>
-                    <p>Runtime: <span>{formatTime(details.runtime)}</span></p>
-                  </>
-                )}
+            <div className="other-details">
+              {details.status && (
+                <div className="other-details-item">
+                  <div>
+                    <p>
+                      Status: <span>{details.status}</span>
+                    </p>
+                    {details.runtime && (
+                      <>
+                        <p>|</p>
+                        <p>
+                          Runtime: <span>{formatTime(details.runtime)}</span>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <div className="line"></div>
                 </div>
-              </div>
-            )}
-           </div>
+              )}
+              {director?.length > 0 && (
+                <div className="other-details-item">
+                  <div>
+                    <p>
+                      Director{"(s)"}:{" "}
+                      {director.map((item, idx) => (
+                        <span key={idx}>
+                          {item?.name}
+                          {director.length > 1 && ", "}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                  <div className="line"></div>
+                </div>
+              )}
+
+              {writer?.length > 0 && (
+                <div className="other-details-item">
+                  <div>
+                    <p>
+                      Writer{"(s)"}:{" "}
+                      {writer.map((item, idx) => (
+                        <span key={idx}>
+                          {item?.name}
+                          {writer.length > 1 && ", "}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                  <div className="line"></div>
+                </div>
+              )}
+              {details.created_by?.length > 0 && (
+                <div className="other-details-item">
+                  <div>
+                    <p>
+                      Created by:{" "}
+                      {details.created_by?.map((item, idx) => (
+                        <span key={idx}>
+                          {item?.name}
+                          {details.created_by.length > 1 && ", "}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                  <div className="line"></div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      {credits?.cast.length>0 && (
+      {credits?.cast.length > 0 && (
         <div className="slider-container">
           <div className="slider-title">
-              <div></div>
-              <h2>Cast</h2>
-            </div>
-            <CastSlider loading={loading} cast={credits.cast}/>
+            <div></div>
+            <h2>Cast</h2>
+          </div>
+          <CastSlider loading={loading} cast={credits.cast} />
         </div>
       )}
     </div>
