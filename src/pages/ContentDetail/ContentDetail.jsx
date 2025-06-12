@@ -7,7 +7,8 @@ import {
   SMALL_IMG_BASE_URL,
 } from "./../../utils/constants";
 import { formatTime } from "../../utils/utilityFunctions";
-import CastSlider from "../../components/CastSlider/CastSlider";
+import CastSlider from "../../components/ContentDetailSliders/CastSlider";
+import SimilarSlider from "../../components/ContentDetailSliders/SimilarSlider";
 
 const ContentDetail = () => {
   const { type, id } = useParams();
@@ -25,6 +26,7 @@ const ContentDetail = () => {
         fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
       ]);
       setDetails(detailsData);
+      console.log(similarContentData)
       setSimilarContent(similarContentData.results);
       setCredits(creditsData);
     } catch (error) {
@@ -35,13 +37,13 @@ const ContentDetail = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, id]);
+
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading)
     return (
@@ -210,6 +212,17 @@ const ContentDetail = () => {
           <CastSlider loading={loading} cast={credits.cast} />
         </div>
       )}
+
+      {similarContent?.length>0 && (
+        <div className="slider-container">
+          <div className="slider-title">
+            <div></div>
+            <h2>Similar {type==="tv" ? "TV Shows" : "Movies"}</h2>
+          </div>
+          <SimilarSlider loading={loading} type={type} similarContent={similarContent}/>
+        </div>
+      )
+      }
     </div>
   );
 };

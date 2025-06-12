@@ -11,7 +11,7 @@
 
 .content-detail-main {
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   background-color: var(--slate-primary);
   position: relative;
   min-height: 95vh;
@@ -124,7 +124,7 @@
 
 .content-detail-container .slider-container{
   width: 90vw;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 
 .slider-title{
