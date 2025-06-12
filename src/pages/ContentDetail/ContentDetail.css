@@ -1,15 +1,50 @@
-.content-detail-container{
-    width: 100%;
-    min-height: 100vh;
+.content-detail-container {
+  width: 100%;
+  min-height: 100vh;
 }
 
-.content-detail-skeliton{
-   width: 100%;
-   height: 100vh;
+.content-detail-skeliton {
+  width: 100%;
+  height: 100vh;
 }
 
-.content-detail{
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
+.content-detail-main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--slate-primary);
 }
+
+.content-detail-main .details{
+    margin: 0 auto;
+    padding: 30px 0 20px 0;
+    width: 80vw;
+}
+.content-detail-main .details .basic-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.content-detail-main .details .basic-details div{
+    display: flex;
+    gap: 5px;
+}
+
+.content-detail-main .details .basic-details div p{
+    font-weight: lighter;
+}
+.content-detail-main .details .basic-details div p:first-child{
+    color: var(--text-blue);
+}
+
+.poster-and-trailers{
+    margin-top: 20px;
+    display: flex;
+}
+
+
+
+
+
+
+

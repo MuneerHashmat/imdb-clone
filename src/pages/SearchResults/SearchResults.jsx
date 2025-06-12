@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./SearchResults.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchDataFromTMDB } from "./../../api/tmdb";
 import SearchResultCard from "../../components/SearchResultCard/SearchResultCard";
 import Pagination from "../../components/Pagination/Pagination";
@@ -8,11 +8,13 @@ import { isPresentInSessionStorage, saveToSessionStorage } from "../../utils/uti
 
 const SearchResults = () => {
   const location = useLocation();
+  const navigate=useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [currPage, setCurrPage] = useState(null);
   const [searchResults, setSearchResults] = useState(null);
   let totalPagesRef = useRef(null);
+  
 
   const fetchSearchResults = async () => {
     setLoading(true);
@@ -49,7 +51,9 @@ const SearchResults = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const query = params.get("query");
+     const pageFromUrl = parseInt(params.get("page")) || 1;
     setSearchQuery(query || "");
+    setCurrPage(pageFromUrl)
   }, [location.search]);
 
   useEffect(() => {
@@ -59,14 +63,17 @@ const SearchResults = () => {
     if (currPage == 1) {
       fetchResults();
     }
-    setCurrPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   useEffect(() => {
-    if (searchQuery.length > 0) {
-      fetchResults();
-    }
+    if (searchQuery.length > 0 && currPage !== null) {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", currPage);
+    navigate(`${location.pathname}?${queryParams.toString()}`, { replace: true });
+
+    fetchResults();
+  }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currPage]);
 

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import "./ContentDetail.css";
 import { useEffect, useState } from "react";
 import { fetchDataFromTMDB } from "./../../api/tmdb";
-import toast from "react-hot-toast";
+import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from "./../../utils/constants";
 
 const ContentDetail = () => {
   const { type, id } = useParams();
@@ -22,10 +22,10 @@ const ContentDetail = () => {
       setDetails(detailsData);
       setTrailers(trailerData.results);
       setSimilarContent(similarContentData.results);
-      setLoading(false);
     } catch (error) {
       console.log(error);
-      toast.error("Details not found");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,11 +45,37 @@ const ContentDetail = () => {
       </div>
     );
 
+  if (!details && trailers.length == 0 && similarContent.length == 0)
     return (
       <div className="content-detail-container">
-        <h2>{type} id {id}</h2>
+        <h2 style={{ textAlign: "center" }}>Details not Found {": ("}</h2>
       </div>
-    )
+    );
+
+  return (
+    <div className="content-detail-container">
+      <div className="content-detail-main">
+        <div className="details">
+          <div className="basic-details">
+            <h1>{details?.title || details?.name}</h1>
+            <div>
+            <p>{type=="tv" ? "TV Show" : "Movie"}</p><span>|</span>
+            <p>{type=="movie" ? details.release_date.slice(0,4) : details.first_air_date.slice(0,4)}</p><span>|</span>
+            <p
+            style={{
+              color: details.adult ? "red" :"green"
+            }}
+            >{details.adult ? "18+" : "PG-13"}</p>
+            </div>
+          </div>
+          <div className="poster-and-trailers">
+            <img src={details.poster_path ? `${SMALL_IMG_BASE_URL}${details.poster_path}` : "/poster.png"} alt="" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ContentDetail;
