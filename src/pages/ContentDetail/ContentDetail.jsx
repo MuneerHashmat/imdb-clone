@@ -7,25 +7,26 @@ import {
   SMALL_IMG_BASE_URL,
 } from "./../../utils/constants";
 import { formatTime } from "../../utils/utilityFunctions";
+import CastSlider from "../../components/CastSlider/CastSlider";
 
 const ContentDetail = () => {
   const { type, id } = useParams();
   const [details, setDetails] = useState(null);
-  const [trailers, setTrailers] = useState([]);
   const [similarContent, setSimilarContent] = useState([]);
+  const [credits, setCredits]=useState(null)
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true);
     try {
-      const [detailsData, trailerData, similarContentData] = await Promise.all([
+      const [detailsData, similarContentData, creditsData] = await Promise.all([
         fetchDataFromTMDB(`/${type}/${id}?language=en-US`),
-        fetchDataFromTMDB(`/${type}/${id}/videos?language=en-US`),
         fetchDataFromTMDB(`/${type}/${id}/similar?language=en-US&page=1`),
+        fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`)
       ]);
       setDetails(detailsData);
-      setTrailers(trailerData.results);
       setSimilarContent(similarContentData.results);
+      setCredits(creditsData);
     } catch (error) {
       console.log(error);
     } finally {
@@ -49,7 +50,7 @@ const ContentDetail = () => {
       </div>
     );
 
-  if (!details && trailers.length == 0 && similarContent.length == 0)
+  if (!details && !credits && similarContent.length == 0)
     return (
       <div className="content-detail-container">
         <h2 style={{ textAlign: "center" }}>Details not Found {": ("}</h2>
@@ -135,6 +136,15 @@ const ContentDetail = () => {
           </div>
         </div>
       </div>
+      {credits?.cast.length>0 && (
+        <div className="slider-container">
+          <div className="slider-title">
+              <div></div>
+              <h2>Cast</h2>
+            </div>
+            <CastSlider loading={loading} cast={credits.cast}/>
+        </div>
+      )}
     </div>
   );
 };

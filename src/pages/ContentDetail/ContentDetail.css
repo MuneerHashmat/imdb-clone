@@ -1,6 +1,7 @@
 .content-detail-container {
   width: 100%;
   min-height: 100vh;
+  margin-bottom: 60px;
 }
 
 .content-detail-skeliton {
@@ -10,7 +11,7 @@
 
 .content-detail-main {
   width: 100%;
-  padding-bottom: 20px;
+  margin-bottom: 40px;
   background-color: var(--slate-primary);
   position: relative;
   min-height: 95vh;
@@ -114,6 +115,24 @@
 .other-details-item .line{
   width: 100%;
   border-top: 2px solid #848484;
+}
+
+.content-detail-container .slider-container{
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.slider-title{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.slider-title div{
+    width: 5px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: var(--yellow-primary);
 }
 
 @media (max-width: 1024px) {
