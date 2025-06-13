@@ -166,7 +166,7 @@ const ContentDetail = () => {
                       {director.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {director.length > 1 && ", "}
+                          {idx!==director.length-1 && ", "}
                         </span>
                       ))}
                     </p>
@@ -183,7 +183,7 @@ const ContentDetail = () => {
                       {writer.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {writer.length > 1 && ", "}
+                          {idx!==writer.length - 1 && ", "}
                         </span>
                       ))}
                     </p>
@@ -199,7 +199,7 @@ const ContentDetail = () => {
                       {details.created_by?.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {details.created_by.length > 1 && ", "}
+                          {idx!==details.created_by.length - 1 && ", "}
                         </span>
                       ))}
                     </p>
