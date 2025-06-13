@@ -37,8 +37,3 @@
   right: 1rem;
 }
 
-@media (max-width: 768px) {
-  .slide-btn {
-    display: none;
-  }
-}
