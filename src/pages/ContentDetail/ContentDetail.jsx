@@ -26,7 +26,6 @@ const ContentDetail = () => {
         fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
       ]);
       setDetails(detailsData);
-      console.log(similarContentData);
       setSimilarContent(similarContentData.results);
       setCredits(creditsData);
     } catch (error) {
