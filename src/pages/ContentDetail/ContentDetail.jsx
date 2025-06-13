@@ -26,7 +26,7 @@ const ContentDetail = () => {
         fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
       ]);
       setDetails(detailsData);
-      console.log(similarContentData)
+      console.log(similarContentData);
       setSimilarContent(similarContentData.results);
       setCredits(creditsData);
     } catch (error) {
@@ -37,18 +37,27 @@ const ContentDetail = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, id]);
-
-   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   if (loading)
     return (
       <div className=".content-detail-container">
         <div className="content-detail-skeliton shimmer"></div>
+        <div className="slider-cntainer">
+          <div
+            style={{ width: "90vw", height: "230px", margin:"40px auto" }}
+            className="shimmer"
+          ></div>
+        </div>
+        <div className="slider-container">
+          <div
+            style={{ width: "90vw", height: "350px", margin:"40px auto",}}
+            className="shimmer"
+          ></div>
+        </div>
       </div>
     );
 
@@ -213,16 +222,19 @@ const ContentDetail = () => {
         </div>
       )}
 
-      {similarContent?.length>0 && (
+      {similarContent?.length > 0 && (
         <div className="slider-container">
           <div className="slider-title">
             <div></div>
-            <h2>Similar {type==="tv" ? "TV Shows" : "Movies"}</h2>
+            <h2>Similar {type === "tv" ? "TV Shows" : "Movies"}</h2>
           </div>
-          <SimilarSlider loading={loading} type={type} similarContent={similarContent}/>
+          <SimilarSlider
+            loading={loading}
+            type={type}
+            similarContent={similarContent}
+          />
         </div>
-      )
-      }
+      )}
     </div>
   );
 };
