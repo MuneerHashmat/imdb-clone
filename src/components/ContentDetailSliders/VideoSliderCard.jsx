@@ -19,7 +19,9 @@ const VideoSliderCard = ({ item, handleVideoClick }) => {
           <CirclePlay size={60} className="play-icon"/> 
         </div>
       </div>
-       <p>{item.name}</p>
+       <div className="title">
+        <p>{item.name}</p>
+       </div>
     </div>
   );
 };
