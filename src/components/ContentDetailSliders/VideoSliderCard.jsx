@@ -5,7 +5,7 @@ const VideoSliderCard = ({ item, handleVideoClick }) => {
   return (
     <div className="video-card-container">
       <div
-       onClick={()=>handleVideoClick(item.id)}
+       onClick={()=>handleVideoClick(item.key)}
         style={
           item.key && {
             backgroundImage: item.key
