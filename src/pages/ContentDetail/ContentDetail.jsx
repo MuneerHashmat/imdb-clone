@@ -9,25 +9,30 @@ import {
 import { formatTime } from "../../utils/utilityFunctions";
 import CastSlider from "../../components/ContentDetailSliders/CastSlider";
 import SimilarSlider from "../../components/ContentDetailSliders/SimilarSlider";
+import VideoSlider from "../../components/ContentDetailSliders/VideoSlider";
 
 const ContentDetail = () => {
   const { type, id } = useParams();
   const [details, setDetails] = useState(null);
   const [similarContent, setSimilarContent] = useState([]);
   const [credits, setCredits] = useState(null);
+  const [videos, setVideos]=useState([]);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true);
     try {
-      const [detailsData, similarContentData, creditsData] = await Promise.all([
+      const [detailsData, similarContentData, creditsData, videosData] = await Promise.all([
         fetchDataFromTMDB(`/${type}/${id}?language=en-US`),
         fetchDataFromTMDB(`/${type}/${id}/similar?language=en-US&page=1`),
         fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
+        fetchDataFromTMDB(`/${type}/${id}/videos?language=en-US`),
       ]);
       setDetails(detailsData);
       setSimilarContent(similarContentData.results);
       setCredits(creditsData);
+      setVideos(videosData.results)
+      console.log(videosData)
     } catch (error) {
       console.log(error);
     } finally {
@@ -51,6 +56,12 @@ const ContentDetail = () => {
             className="shimmer"
           ></div>
         </div>
+
+        <div className="slider-container">
+          <div style={{width: "90vw", height:"250px", margin:"40px auto"}}
+          className="shimmer"
+          ></div>
+        </div>
         <div className="slider-container">
           <div
             style={{ width: "90vw", height: "350px", margin:"40px auto",}}
@@ -60,7 +71,7 @@ const ContentDetail = () => {
       </div>
     );
 
-  if (!details && !credits && similarContent.length == 0)
+  if (!details && !credits && similarContent.length == 0 && videos.length===0)
     return (
       <div className="content-detail-container">
         <h2 style={{ textAlign: "center" }}>Details not Found {": ("}</h2>
@@ -221,6 +232,16 @@ const ContentDetail = () => {
         </div>
       )}
 
+      {videos?.length>0 && (
+        <div className="slider-container">
+          <div className="slider-title">
+            <div></div>
+            <h2>Official Videos</h2>
+          </div>
+          <VideoSlider videos={videos} />
+        </div>
+      )}
+
       {similarContent?.length > 0 && (
         <div className="slider-container">
           <div className="slider-title">
@@ -234,6 +255,8 @@ const ContentDetail = () => {
           />
         </div>
       )}
+
+      
     </div>
   );
 };

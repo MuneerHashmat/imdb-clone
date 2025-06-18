@@ -1,0 +1,24 @@
+.video-card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.video-card-bg{
+    width: 319px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    z-index: 10;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-card-bg:hover .play-icon{
+    stroke: var(--yellow-primary);
+}
+
