@@ -16,23 +16,23 @@ const ContentDetail = () => {
   const [details, setDetails] = useState(null);
   const [similarContent, setSimilarContent] = useState([]);
   const [credits, setCredits] = useState(null);
-  const [videos, setVideos]=useState([]);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true);
     try {
-      const [detailsData, similarContentData, creditsData, videosData] = await Promise.all([
-        fetchDataFromTMDB(`/${type}/${id}?language=en-US`),
-        fetchDataFromTMDB(`/${type}/${id}/similar?language=en-US&page=1`),
-        fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
-        fetchDataFromTMDB(`/${type}/${id}/videos?language=en-US`),
-      ]);
+      const [detailsData, similarContentData, creditsData, videosData] =
+        await Promise.all([
+          fetchDataFromTMDB(`/${type}/${id}?language=en-US`),
+          fetchDataFromTMDB(`/${type}/${id}/similar?language=en-US&page=1`),
+          fetchDataFromTMDB(`/${type}/${id}/credits?language=en-US`),
+          fetchDataFromTMDB(`/${type}/${id}/videos?language=en-US`),
+        ]);
       setDetails(detailsData);
       setSimilarContent(similarContentData.results);
       setCredits(creditsData);
-      setVideos(videosData.results)
-      console.log(videosData)
+      setVideos(videosData.results);
     } catch (error) {
       console.log(error);
     } finally {
@@ -52,26 +52,27 @@ const ContentDetail = () => {
         <div className="content-detail-skeliton shimmer"></div>
         <div className="slider-cntainer">
           <div
-            style={{ width: "90vw", height: "230px", margin:"40px auto" }}
+            style={{ width: "90vw", height: "230px", margin: "40px auto" }}
             className="shimmer"
           ></div>
         </div>
 
         <div className="slider-container">
-          <div style={{width: "90vw", height:"250px", margin:"40px auto"}}
-          className="shimmer"
+          <div
+            style={{ width: "90vw", height: "250px", margin: "40px auto" }}
+            className="shimmer"
           ></div>
         </div>
         <div className="slider-container">
           <div
-            style={{ width: "90vw", height: "350px", margin:"40px auto",}}
+            style={{ width: "90vw", height: "350px", margin: "40px auto" }}
             className="shimmer"
           ></div>
         </div>
       </div>
     );
 
-  if (!details && !credits && similarContent.length == 0 && videos.length===0)
+  if (!details && !credits && similarContent.length == 0 && videos.length === 0)
     return (
       <div className="content-detail-container">
         <h2 style={{ textAlign: "center" }}>Details not Found {": ("}</h2>
@@ -177,7 +178,7 @@ const ContentDetail = () => {
                       {director.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {idx!==director.length-1 && ", "}
+                          {idx !== director.length - 1 && ", "}
                         </span>
                       ))}
                     </p>
@@ -194,7 +195,7 @@ const ContentDetail = () => {
                       {writer.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {idx!==writer.length - 1 && ", "}
+                          {idx !== writer.length - 1 && ", "}
                         </span>
                       ))}
                     </p>
@@ -210,7 +211,7 @@ const ContentDetail = () => {
                       {details.created_by?.map((item, idx) => (
                         <span key={idx}>
                           {item?.name}
-                          {idx!==details.created_by.length - 1 && ", "}
+                          {idx !== details.created_by.length - 1 && ", "}
                         </span>
                       ))}
                     </p>
@@ -232,7 +233,7 @@ const ContentDetail = () => {
         </div>
       )}
 
-      {videos?.length>0 && (
+      {videos?.length > 0 && (
         <div className="slider-container">
           <div className="slider-title">
             <div></div>
@@ -255,8 +256,6 @@ const ContentDetail = () => {
           />
         </div>
       )}
-
-      
     </div>
   );
 };

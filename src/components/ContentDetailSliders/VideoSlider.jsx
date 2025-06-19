@@ -1,24 +1,20 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "../Slider/Slider.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import VideoSliderCard from "./VideoSliderCard";
 import VideoModal from "../VideoModal/VideoModal";
 
 const VideoSlider = ({ loading, videos }) => {
   const slideRef = useRef(null);
-  const [currVideo, setCurrVideo]=useState("");
+  const [currVideo, setCurrVideo] = useState("");
 
-  const handleVideoClick=(videoId)=>{
-    setCurrVideo(videoId)
-  }
+  const handleVideoClick = (videoId) => {
+    setCurrVideo(videoId);
+  };
 
-  const handleVideoClose=()=>{
+  const handleVideoClose = () => {
     setCurrVideo("");
-  }
-
-  useEffect(()=>{
-    console.log(currVideo)
-  },[currVideo])
+  };
 
   const scrollLeft = () => {
     if (slideRef.current) {
@@ -39,11 +35,14 @@ const VideoSlider = ({ loading, videos }) => {
     return <div style={{ height: "230px" }} className="slider shimmer"></div>;
 
   return (
-    <div 
-    className="slider">
+    <div className="slider">
       <div ref={slideRef} className="slider-cards">
         {videos.map((item) => (
-          <VideoSliderCard key={item.id} item={item} handleVideoClick={handleVideoClick}/>
+          <VideoSliderCard
+            key={item.id}
+            item={item}
+            handleVideoClick={handleVideoClick}
+          />
         ))}
       </div>
 
@@ -53,7 +52,7 @@ const VideoSlider = ({ loading, videos }) => {
       <button onClick={scrollRight} className="slide-btn slide-right">
         <ChevronRight size={24} />
       </button>
-      <VideoModal currVideo={currVideo} handleVideoClose={handleVideoClose}/>
+      <VideoModal currVideo={currVideo} handleVideoClose={handleVideoClose} />
     </div>
   );
 };
