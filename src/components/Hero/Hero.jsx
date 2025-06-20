@@ -26,7 +26,9 @@ const Hero = () => {
     fecthTrendingContent();
   }, []);
 
-  if (loading) return <div className="hero-skeliton shimmer"></div>;
+  if (loading) return <div className="hero-skeliton shimmer">
+    <div className="carousel-card-container"></div>
+  </div>;
 
   return (
     <div className="hero-container">

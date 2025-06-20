@@ -5,6 +5,14 @@
     margin: 0 auto;
 }
 
+.carousel-card-container {
+  width: 100%;
+  aspect-ratio: 15/5;
+  background-size: cover;
+  position: relative;
+  border-radius: 10px;
+}
+
 
 
 
