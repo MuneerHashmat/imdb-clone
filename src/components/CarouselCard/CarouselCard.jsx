@@ -21,7 +21,7 @@ const CarouselCard = ({ item }) => {
       className="carousel-card-container"
     >
       <div className="carousel-content">
-        <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" />
+        <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" loading="eager" fetchPriority="high"/>
 
         <div className="details-container">
           <div>

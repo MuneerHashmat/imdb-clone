@@ -3,7 +3,7 @@ import { fetchDataFromTMDB } from "../../api/tmdb";
 import "./Hero.css";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import { RESPONSIVE } from "../../utils/constants";
+import { ORIGINAL_IMG_BASE_URL, RESPONSIVE } from "../../utils/constants";
 import CarouselCard from "../CarouselCard/CarouselCard";
 
 const Hero = () => {
@@ -17,8 +17,17 @@ const Hero = () => {
         const data = await fetchDataFromTMDB(
           "/trending/all/day?language=en-US"
         );
+        const firstBackdrop = data.results?.[0]?.backdrop_path;
+        if (firstBackdrop) {
+          const preloadLink = document.createElement("link");
+          preloadLink.rel = "preload";
+          preloadLink.as = "image";
+          preloadLink.href = `${ORIGINAL_IMG_BASE_URL}${firstBackdrop}`;
+          preloadLink.fetchPriority = "high";
+          document.head.appendChild(preloadLink);
+        }
         setTrendingItems(data.results);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -26,9 +35,12 @@ const Hero = () => {
     fecthTrendingContent();
   }, []);
 
-  if (loading) return <div className="hero-skeliton shimmer">
-    <div className="carousel-card-container"></div>
-  </div>;
+  if (loading)
+    return (
+      <div className="hero-skeliton shimmer">
+        <div className="carousel-card-container"></div>
+      </div>
+    );
 
   return (
     <div className="hero-container">
@@ -39,8 +51,8 @@ const Hero = () => {
         autoPlaySpeed={3000}
         arrows={true}
       >
-        {trendingItems.map((item)=>(
-          <CarouselCard key={item.id} item={item}/>
+        {trendingItems.map((item) => (
+          <CarouselCard key={item.id} item={item} />
         ))}
       </Carousel>
     </div>
