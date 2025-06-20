@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchDataFromTMDB } from "../../api/tmdb";
 import "./Hero.css";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import { ORIGINAL_IMG_BASE_URL, RESPONSIVE } from "../../utils/constants";
+import {  RESPONSIVE } from "../../utils/constants";
 import CarouselCard from "../CarouselCard/CarouselCard";
 
 const Hero = () => {
@@ -17,15 +17,6 @@ const Hero = () => {
         const data = await fetchDataFromTMDB(
           "/trending/all/day?language=en-US"
         );
-        const firstBackdrop = data.results?.[0]?.backdrop_path;
-        if (firstBackdrop) {
-          const preloadLink = document.createElement("link");
-          preloadLink.rel = "preload";
-          preloadLink.as = "image";
-          preloadLink.href = `${ORIGINAL_IMG_BASE_URL}${firstBackdrop}`;
-          preloadLink.fetchPriority = "high";
-          document.head.appendChild(preloadLink);
-        }
         setTrendingItems(data.results);
         setLoading(false);
       } catch (error) {
