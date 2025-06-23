@@ -1,7 +1,8 @@
+import { lazy, Suspense } from "react";
 import Hero from "../../components/Hero/Hero";
-import Slider from "../../components/Slider/Slider";
 import { SLIDERS } from "../../utils/constants";
 import "./Home.css";
+const Slider = lazy(() => import("../../components/Slider/Slider"));
 
 const Home = () => {
   return (
@@ -13,10 +14,16 @@ const Home = () => {
             <div></div>
             <h2>Most Popular Celebrities</h2>
           </div>
-          <Slider
-            type={"people"}
-            endpoint={"/person/popular?language=en-US&page=1"}
-          />
+          <Suspense
+            fallback={
+              <div style={{ height: "230px" }} className="slider shimmer"></div>
+            }
+          >
+            <Slider
+              type={"people"}
+              endpoint={"/person/popular?language=en-US&page=1"}
+            />
+          </Suspense>
         </div>
 
         <h1 style={{ color: "#f5c518", marginBottom: "40px" }}>
@@ -29,7 +36,16 @@ const Home = () => {
               <div></div>
               <h2>{item.title}</h2>
             </div>
-            <Slider type={item.type} endpoint={item.endpoint} />
+            <Suspense
+              fallback={
+                <div
+                  style={{ height: "230px" }}
+                  className="slider shimmer"
+                ></div>
+              }
+            >
+              <Slider type={item.type} endpoint={item.endpoint} />
+            </Suspense>
           </div>
         ))}
       </div>
