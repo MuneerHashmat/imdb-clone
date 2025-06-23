@@ -42,8 +42,8 @@ const Hero = () => {
         autoPlaySpeed={3000}
         arrows={true}
       >
-        {trendingItems.map((item) => (
-          <CarouselCard key={item.id} item={item} />
+        {trendingItems.map((item,idx) => (
+          <CarouselCard key={item.id} item={item} idx={idx}/>
         ))}
       </Carousel>
     </div>

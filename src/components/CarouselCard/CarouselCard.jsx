@@ -6,7 +6,7 @@ import {
 import "./CarouselCard.css";
 import { useNavigate } from "react-router-dom";
 
-const CarouselCard = ({ item }) => {
+const CarouselCard = ({ item, idx }) => {
   const navigate = useNavigate();
 
   const handleOnClick = () => {
@@ -16,12 +16,24 @@ const CarouselCard = ({ item }) => {
     <div
       onClick={handleOnClick}
       style={{
-        backgroundImage: `linear-gradient(180deg,rgba(0, 0, 0, 0.14) 56%, rgba(10, 13, 12, 1) 86%), url(${ORIGINAL_IMG_BASE_URL}${item.backdrop_path})`,
+        backgroundImage: `linear-gradient(180deg,rgba(0, 0, 0, 0.14) 56%, rgba(10, 13, 12, 1) 86%)`,
       }}
       className="carousel-card-container"
     >
+      <picture>
+        <source
+          media="(min-width: 600px)"
+          srcSet={`${ORIGINAL_IMG_BASE_URL}${item.backdrop_path}`}
+        />
+        <img
+          src={`${SMALL_IMG_BASE_URL}${item.backdrop_path}`}
+          alt="backdrop"
+          loading={idx == 0 ? "eager" : "lazy"}
+          className="backdrop"
+        />
+      </picture>
       <div className="carousel-content">
-        <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" loading="eager" fetchPriority="high"/>
+        <img src={`${SMALL_IMG_BASE_URL}${item.poster_path}`} alt="poster" />
 
         <div className="details-container">
           <div>
