@@ -16,7 +16,7 @@ const Home = () => {
           </div>
           <Suspense
             fallback={
-              <div style={{ height: "230px" }} className="slider shimmer"></div>
+              <div  className="slider slider-mob shimmer"></div>
             }
           >
             <Slider
