@@ -171,6 +171,10 @@
     gap: 30px;
   }
 
+  .details .poster{
+    min-height: 500px;
+  }
+
   .details .poster img {
     width: 100%;
     border-radius: 10px;
@@ -181,5 +185,11 @@
 
   .main-details .overview {
     display: block;
+  }
+}
+
+@media (max-width: 320px) {
+  .details .poster{
+    min-height: 400px;
   }
 }
